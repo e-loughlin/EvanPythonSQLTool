@@ -51,3 +51,14 @@ insights = epst.build_insights(data)
 standard_analysis = epst.standard_analysis(data)
 
 ```
+
+## Things To Practice
+
+- Pandas
+- Python (Production Code)
+- Python Testing 
+- Python Virtual Environments (venv)
+- Ibis
+- SQL
+- BigQuery SQL
+- Airflow

@@ -13,7 +13,7 @@ setup(
         'ibis-framework',
     ],
     description='A Python library to streamline SQL-related tasks and enhance workflow efficiency for data scientists and engineers.',
-    author='Your Name',
+    author='Evan Loughlin',
     author_email='evan.m.loughlin@gmail.com',
     url='https://github.com/e-loughlin/evanpythonsqltool',
     classifiers=[
