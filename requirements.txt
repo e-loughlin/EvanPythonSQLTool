@@ -1,0 +1,6 @@
+pandas
+sqlalchemy
+numpy
+scipy
+matplotlib
+ibis-framework
