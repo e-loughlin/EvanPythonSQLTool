@@ -1,7 +1,13 @@
-# EvanPythonSQLTool
+# Bin Chicken DB Library
+
+<img src="bin_chicken_logo.png" style="display: block; margin: 0 auto; width: 200px; height: 200px;">
 
 ## Overview
-EvanPythonSQLTool is a simple yet effective Python library designed to help data scientists and engineers streamline their SQL-related tasks and enhance their workflow efficiency. Inspired by the needs outlined in a job posting from Reddit Data Science, this library aims to provide a foundational toolset for analyzing experiments, fetching data, building insights, and standardizing repeatable data science tasks.
+Bin Chicken is a simple yet effective Python library wrapping the [Ibis Library](https://ibis-project.org/) designed to help data scientists and engineers streamline their SQL-related tasks and enhance their workflow efficiency. Inspired by the needs outlined in a job posting from Reddit Data Science, this library aims to provide a foundational toolset for analyzing experiments, fetching data, building insights, and standardizing repeatable data science tasks.
+
+### Naming
+
+"Bin Chicken" is an Australian colloquial term to refer to the Australian White Ibis, due to its habit of eating from rubbish bins.
 
 ## Features
 
