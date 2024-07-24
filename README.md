@@ -5,7 +5,7 @@
 </p>
 
 ## Overview
-Bin Chicken is a simple yet effective Python library wrapping the [Ibis Library](https://ibis-project.org/) designed to help data scientists and engineers streamline their SQL-related tasks and enhance their workflow efficiency. Inspired by the needs outlined in a job posting from Reddit Data Science, this library aims to provide a foundational toolset for analyzing experiments, fetching data, building insights, and standardizing repeatable data science tasks.
+Bin Chicken is a simple Python library wrapping the [Ibis Library](https://ibis-project.org/) designed to help data scientists and engineers streamline their SQL-related tasks and enhance their workflow efficiency. This library aims to provide a foundational toolset for analyzing experiments, fetching data, building insights, and standardizing repeatable data science tasks.
 
 ### Naming
 
