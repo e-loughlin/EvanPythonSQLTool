@@ -7,17 +7,14 @@ from dotenv import load_dotenv
 # Load the .env file
 load_dotenv()
 
-# Get the environment variable
-import pandas as pd
-
-from binchicken.gpt import GPTQueryTool  # Correct import for GPTQueryTool
+from binchicken.gpt import GPTQueryTool
 
 
 class TestGPTQueryTool(unittest.TestCase):
     def setUp(self):
         # Set up test data
         self.api_key = "test_api_key"
-        self.api_key = os.getenv("OPENAI_API_KEY")
+        self.api_key = str(os.getenv("OPENAI_API_KEY"))
         self.gpt_tool = GPTQueryTool(openai_api_key=self.api_key, safe_mode=True)
         self.ibis_mock = MagicMock()
         self.ibis_mock.list_tables.return_value = ["table1", "table2"]
@@ -103,9 +100,7 @@ class TestGPTQueryTool(unittest.TestCase):
         with patch.object(
             self.gpt_tool, "_extract_sql_statement", return_value=unsafe_query
         ):
-            result = self.gpt_tool.query(
-                self.ibis_mock, "Unsafe query test", execute=True
-            )
+            self.gpt_tool.query(self.ibis_mock, "Unsafe query test", execute=True)
             self.ibis_mock.sql.assert_called_once_with(unsafe_query)
 
 
