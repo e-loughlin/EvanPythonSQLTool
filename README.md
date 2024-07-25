@@ -16,45 +16,16 @@ Bin Chicken is a simple Python library wrapping the [Ibis Library](https://ibis-
 [- GPT Query Tool](#gpt-query-tool)
   - Run SQL commands on your Ibis Database Connection with a user prompt query.
 
-Setting Up a Virtual Environment
-To create a virtual environment and install the required packages from requirements.txt, follow these steps:
 
-## Create a Virtual Environment
+## Getting Started
+
+### Create a Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-## Activate the Virtual Environment
-
-### On Windows
-
-```bash
-venv\Scripts\activate
-```
-
-### On macOS and Linux
-
-```bash
-source venv/bin/activate
-```
-
-## Install Dependencies
-
-1. Create a `requirements.txt` file with the following content:
-
-```plaintext
-pandas
-sqlalchemy
-numpy
-scipy
-matplotlib
-ibis-framework
-openai
-python-dotenv
-```
-
-2. Install the dependencies using pip:
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
