@@ -130,3 +130,14 @@ actor_id | first_name | last_name | last_update
 96 | GENE | WILLIS | 2020-12-23 07:12:30
 164 | HUMPHREY | WILLIS | 2020-12-23 07:12:31
 
+### Additional Parameters
+
+`safe_mode`:
+The safe_mode parameter in the GPTQueryTool initialization is used to ensure that the queries executed are safe and secure. When safe_mode=True, the tool performs additional checks to avoid potentially harmful operations and to ensure the queries do not cause unintended changes or access restricted data. This is particularly useful in environments where query safety is a concern.
+
+`execute`:
+The execute parameter in the query method determines whether the generated SQL query should be executed immediately. When execute=True, the query is sent to the database and the results are returned. If execute=False, the query is only generated and returned as a string, allowing you to review or modify it before running it manually.
+
+### GPTQueryTool Examples
+
+Refer to the [Jupyter Notebook 03_GPTQueryTool Examples](https://github.com/e-loughlin/bin-chicken/blob/main/playground/03_GPTQueryTool.ipynb) for more examples of how to use this feature.
