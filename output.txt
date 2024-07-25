@@ -1,0 +1,21 @@
+.
+├── README.md
+├── __init__.py
+├── bin_chicken_logo.png
+├── binchicken
+│   ├── __init__.py
+│   └── gpt.py
+├── output.txt
+├── playground
+│   ├── 01_Practice_SQL.ipynb
+│   ├── 02_Ibis_Practice.ipynb
+│   ├── 03_GPTQueryTool.ipynb
+│   ├── sakila.db
+│   └── sakila.png
+├── requirements.txt
+├── setup.py
+└── tests
+    ├── __init__.py
+    └── test_gpt.py
+
+4 directories, 15 files
