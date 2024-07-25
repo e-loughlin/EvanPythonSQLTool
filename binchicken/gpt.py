@@ -76,7 +76,11 @@ class GPTQueryTool:
 
         # Extract the response text
         response_text = completion.choices[0].message.content
+
+        print(f"Raw response from ChatGPT: {response_text}")
         sql_query = self._extract_sql_statement(response_text)
+
+        print(f"Generated SQL:\n\n{sql_query}\n")
 
         # Check for safe mode
         if self.safe_mode and not self._is_safe(sql_query):
@@ -87,8 +91,6 @@ class GPTQueryTool:
 
         # Optionally execute the SQL query
         if execute:
-            print(f"Executing SQL:\n\n{sql_query}\n")
             return ibisDB.sql(sql_query).to_pandas()
         else:
-            print(f"Generated SQL:\n\n{sql_query}\n")
             return sql_query

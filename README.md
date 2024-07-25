@@ -11,62 +11,122 @@ Bin Chicken is a simple Python library wrapping the [Ibis Library](https://ibis-
 
 "Bin Chicken" is an Australian colloquial term to refer to the Australian White Ibis, due to its habit of eating from rubbish bins.
 
-## Features
+### Features
 
-### 1. Analyze Experiments
-- **Statistical Inference**: Includes built-in functions for state-of-the-art statistical analysis, enabling robust experiment analysis.
-- **Visualization**: Tools to visualize data and results, aiding in the interpretation of experimental outcomes.
+[- GPT Query Tool](#gpt-query-tool)
+  - Run SQL commands on your Ibis Database Connection with a user prompt query.
 
-### 2. Fetch Data
-- **Data Retrieval**: Functions to fetch data from up-to-date sources, ensuring you always work with the latest and most accurate information.
-- **Database Connectivity**: Simplified connection and querying capabilities for various databases.
+Setting Up a Virtual Environment
+To create a virtual environment and install the required packages from requirements.txt, follow these steps:
 
-### 3. Build Insights
-- **Data Processing**: Utilities for data cleaning, transformation, and aggregation.
-- **Insight Generation**: Tools to build deeper insights and generate reports from Reddit data and other sources.
+## Create a Virtual Environment
 
-### 4. Standardize Analyses
-- **Centralized Functions**: A collection of reusable functions to centralize and standardize common data science tasks.
-- **Documentation**: Comprehensive documentation to help you understand and utilize the library effectively.
-
-## Getting Started
-
-### Installation
-To install EvanPythonSQLTool, use pip:
 ```bash
-pip install evanpythonsqltool
+python -m venv venv
 ```
 
+## Activate the Virtual Environment
 
-## Usage 
+### On Windows
+
+```bash
+venv\Scripts\activate
+```
+
+### On macOS and Linux
+
+```bash
+source venv/bin/activate
+```
+
+## Install Dependencies
+
+1. Create a `requirements.txt` file with the following content:
+
+```plaintext
+pandas
+sqlalchemy
+numpy
+scipy
+matplotlib
+ibis-framework
+openai
+python-dotenv
+```
+
+2. Install the dependencies using pip:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+### GPT Query Tool
+
+Here is an example of using Bin Chicken GPT Query Tool:
 
 ```python
-import evanpythonsqltool as epst
+import sys
+import os
+import ibis
+from IPython.display import display, Markdown
 
-# Connect to a database
-db_connection = epst.connect_to_db('database_url')
+# Add the library path
+sys.path.append(os.path.abspath('../binchicken'))
 
-# Fetch data
-data = epst.fetch_data(db_connection, 'SELECT * FROM table_name')
+# Import the GPT query tool
+from gpt import GPTQueryTool
 
-# Analyze data
-results = epst.analyze_experiment(data, method='t-test')
+# Load the .env file
+from dotenv import load_dotenv
+load_dotenv()
 
-# Build insights
-insights = epst.build_insights(data)
+# Get the environment variable
+openai_api_key = os.getenv('OPENAI_API_KEY')
 
-# Standardize analyses
-standard_analysis = epst.standard_analysis(data)
+# Connect to a SQLite database
+conn = ibis.connect("sqlite://sakila.db")
+
+# Initialize the GPT query tool
+gpt_tool = GPTQueryTool(
+    openai_api_key,
+    safe_mode=True
+)
+
+# Run a query
+result = gpt_tool.query(
+    conn, 
+    "Find all actors whose last names contain the letters LI. Order the rows by last name and first name, in that order",
+    execute=True
+)
+
+# Display the results
+display(result)
 
 ```
 
-## Things To Practice
+Generated SQL: 
 
-- Pandas
-- Python (Production Code)
-- Python Testing 
-- Python Virtual Environments (venv)
-- Ibis
-- SQL
-- BigQuery SQL
-- Airflow
+```sql
+
+SELECT * FROM actor
+WHERE last_name LIKE '%LI%'
+ORDER BY last_name, first_name;
+```
+
+Resulting in the following Pandas Dataframe:
+
+actor_id | first_name | last_name | last_update
+--- | --- | --- | ---
+86 | GREG | CHAPLIN | 2020-12-23 07:12:30
+82 | WOODY | JOLIE | 2020-12-23 07:12:30
+34 | AUDREY | OLIVIER | 2020-12-23 07:12:29
+15 | CUBA | OLIVIER | 2020-12-23 07:12:29
+172 | GROUCHO | WILLIAMS | 2020-12-23 07:12:31
+137 | MORGAN | WILLIAMS | 2020-12-23 07:12:30
+72 | SEAN | WILLIAMS | 2020-12-23 07:12:29
+83 | BEN | WILLIS | 2020-12-23 07:12:30
+96 | GENE | WILLIS | 2020-12-23 07:12:30
+164 | HUMPHREY | WILLIS | 2020-12-23 07:12:31
+
