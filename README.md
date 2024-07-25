@@ -34,7 +34,9 @@ pip install -r requirements.txt
 ## GPT Query Tool
 
 GPTQueryTool allows you to execute SQL queries from a text prompt. It returns resulting Pandas Dataframes, if they exist.
-By default, `safe_mode` is on and prevents SQL queries that contain any mutations or alterations. Use at your own risk!
+By default, `safe_mode` is on and prevents SQL queries that contain any mutations or alterations. 
+
+Use at your own risk! ⚠️ **Dangerous code ahead**
 
 ```python
 import sys
