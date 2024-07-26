@@ -22,7 +22,7 @@ class DatabaseVisualizer(ABC):
         pass
 
 
-class MatplotlibDatabaseVisualizer(DatabaseVisualizer):
+class DatabaseVisualizer(DatabaseVisualizer):
     def __init__(self, db_handler: DBHandler):
         self.db_handler = db_handler
 
