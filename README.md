@@ -15,6 +15,8 @@ Bin Chicken is a simple Python library wrapping the [Ibis Library](https://ibis-
 
 [- GPT Query Tool](#gpt-query-tool)
   - Run SQL commands on your Ibis Database Connection with a user prompt query.
+[- Visualization](#visualization)
+  - Basic visualization library outputting simple graphs for SQLite Databases.
 
 
 ## Getting Started
@@ -102,6 +104,7 @@ actor_id | first_name | last_name | last_update
 96 | GENE | WILLIS | 2020-12-23 07:12:30
 164 | HUMPHREY | WILLIS | 2020-12-23 07:12:31
 
+
 ### Additional Parameters
 
 `safe_mode`:
@@ -113,3 +116,41 @@ The execute parameter in the query method determines whether the generated SQL q
 ### GPTQueryTool Examples
 
 Refer to the [Jupyter Notebook 03_GPTQueryTool Examples](https://github.com/e-loughlin/bin-chicken/blob/main/playground/03_GPTQueryTool.ipynb) for more examples of how to use this feature.
+
+## Visualization
+
+This is a simple visualization library, primarily developed to demonstrate OOP in Python, with associated unit tests. 
+It utilizes abstract classes for DB_Handler (which can be extended easily to other DB types) which then is used by the Visualization tool to produce simple graphs.
+
+```python
+import pandas as pd
+import ibis
+import sqlite3
+import sys, os 
+
+# Bin Chicken Imports
+sys.path.append(os.path.abspath('../binchicken'))
+from visualization import DatabaseVisualizer
+from db_handler import SQLiteDBHandler
+
+
+# Connect to the SQLite database
+connection = sqlite3.connect('sakila.db')
+
+# Initialize the SQLiteDBHandler with the connection
+sqlite_db_handler = SQLiteDBHandler(connection)
+
+# Initialize the DatabaseVisualizer with the DBHandler
+db_visualizer = DatabaseVisualizer(sqlite_db_handler)
+
+# Visualize table sizes
+db_visualizer.visualize_table_sizes()
+
+# Visualize row counts
+db_visualizer.visualize_row_counts()
+
+```
+
+![./playground/row_counts.png]
+
+An example can be found here: [Jupyter - Visualization and OOP Demo](https://github.com/e-loughlin/bin-chicken/blob/main/playground/04_Python_Inheritance_Practice.ipynb).
