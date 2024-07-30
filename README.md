@@ -151,6 +151,6 @@ db_visualizer.visualize_row_counts()
 
 ```
 
-![./playground/row_counts.png]
+![Row Counts for Sakila DB](row_counts.png)
 
 An example can be found here: [Jupyter - Visualization and OOP Demo](https://github.com/e-loughlin/bin-chicken/blob/main/playground/04_Python_Inheritance_Practice.ipynb).
