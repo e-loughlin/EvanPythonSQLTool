@@ -6,6 +6,8 @@ import pandas as pd
 
 
 class DBHandler(ABC):
+    """Abstract base class for handling database operations. Can be used to extend for other DB types"""
+
     @abstractmethod
     def get_table_sizes(self):
         pass
@@ -14,55 +16,8 @@ class DBHandler(ABC):
     def get_row_counts(self):
         pass
 
-    @abstractmethod
-    def get_index_usage(self):
-        pass
 
-    @abstractmethod
-    def get_query_performance(self):
-        pass
-
-
-class PandasDBHandler(DBHandler):
-    def __init__(self, dataframe: pd.DataFrame):
-        self.dataframe = dataframe
-
-    def get_table_sizes(self):
-        # Implement logic to get table sizes from a Pandas DataFrame
-        pass
-
-    def get_row_counts(self):
-        # Implement logic to get row counts from a Pandas DataFrame
-        pass
-
-    def get_index_usage(self):
-        # Implement logic to get index usage from a Pandas DataFrame
-        pass
-
-    def get_query_performance(self):
-        # Implement logic to get query performance from a Pandas DataFrame
-        pass
-
-
-class IbisDBHandler(DBHandler):
-    def __init__(self, connection: ibis.client.Client):
-        self.connection = connection
-
-    def get_table_sizes(self):
-        # Implement logic to get table sizes from an Ibis connection
-        pass
-
-    def get_row_counts(self):
-        # Implement logic to get row counts from an Ibis connection
-        pass
-
-    def get_index_usage(self):
-        # Implement logic to get index usage from an Ibis connection
-        pass
-
-    def get_query_performance(self):
-        # Implement logic to get query performance from an Ibis connection
-        pass
+# TODO: Write IbisDBHandler...
 
 
 class SQLiteDBHandler(DBHandler):
@@ -70,17 +25,28 @@ class SQLiteDBHandler(DBHandler):
         self.connection = connection
 
     def get_table_sizes(self):
-        # Implement logic to get table sizes from an SQLite connection
-        pass
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        tables = cursor.fetchall()
+        table_sizes = {}
+        cursor.execute("PRAGMA page_size;")
+        page_size = cursor.fetchone()[0]
+        for table in tables:
+            table_name = table[0]
+            cursor.execute(f"PRAGMA page_count('{table_name}');")
+            page_count = cursor.fetchone()[0]
+            table_sizes[table_name] = (page_count * page_size) / (
+                1024**2
+            )  # Convert bytes to MB
+        return table_sizes
 
     def get_row_counts(self):
-        # Implement logic to get row counts from an SQLite connection
-        pass
-
-    def get_index_usage(self):
-        # Implement logic to get index usage from an SQLite connection
-        pass
-
-    def get_query_performance(self):
-        # Implement logic to get query performance from an SQLite connection
-        pass
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        tables = cursor.fetchall()
+        row_counts = {}
+        for table in tables:
+            table_name = table[0]
+            cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
+            row_counts[table_name] = cursor.fetchone()[0]
+        return row_counts

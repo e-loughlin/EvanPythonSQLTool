@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from db_handler import DBHandler
 
 
-class DatabaseVisualizer(ABC):
+class IDatabaseVisualizer(ABC):
     @abstractmethod
     def visualize_table_sizes(self):
         pass
@@ -13,16 +13,8 @@ class DatabaseVisualizer(ABC):
     def visualize_row_counts(self):
         pass
 
-    @abstractmethod
-    def visualize_index_usage(self):
-        pass
 
-    @abstractmethod
-    def visualize_query_performance(self):
-        pass
-
-
-class DatabaseVisualizer(DatabaseVisualizer):
+class DatabaseVisualizer(IDatabaseVisualizer):
     def __init__(self, db_handler: DBHandler):
         self.db_handler = db_handler
 
@@ -49,31 +41,5 @@ class DatabaseVisualizer(DatabaseVisualizer):
         plt.xlabel("Tables")
         plt.ylabel("Row Count")
         plt.title("Row Counts per Table")
-        plt.xticks(rotation=45)
-        plt.show()
-
-    def visualize_index_usage(self):
-        index_usage = self.db_handler.get_index_usage()
-        indexes = list(index_usage.keys())
-        usage_counts = list(index_usage.values())
-
-        plt.figure(figsize=(10, 5))
-        plt.bar(indexes, usage_counts, color="salmon")
-        plt.xlabel("Indexes")
-        plt.ylabel("Usage Count")
-        plt.title("Index Usage")
-        plt.xticks(rotation=45)
-        plt.show()
-
-    def visualize_query_performance(self):
-        query_performance = self.db_handler.get_query_performance()
-        queries = list(query_performance.keys())
-        times = list(query_performance.values())
-
-        plt.figure(figsize=(10, 5))
-        plt.bar(queries, times, color="lightblue")
-        plt.xlabel("Queries")
-        plt.ylabel("Execution Time (ms)")
-        plt.title("Query Performance")
         plt.xticks(rotation=45)
         plt.show()
