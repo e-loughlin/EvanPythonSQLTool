@@ -13,9 +13,9 @@ Bin Chicken is a simple Python library wrapping the [Ibis Library](https://ibis-
 
 ### Features
 
-[- GPT Query Tool](#gpt-query-tool)
+- [GPT Query Tool]
   - Run SQL commands on your Ibis Database Connection with a user prompt query.
-[- Visualization](#visualization)
+- [Visualization]
   - Basic visualization library outputting simple graphs for SQLite Databases.
 
 
